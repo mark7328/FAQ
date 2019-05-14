@@ -11,8 +11,8 @@ class Reply extends Model
     {
         return $this->belongsTo('App\User');
     }
-    public function answers()
+    public function answer()
     {
-        return $this->hasMany('App\Answer');
+        return $this->belongsTo('App\Answer');
     }
 }
