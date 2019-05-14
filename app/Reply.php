@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
     protected $fillable = ['body'];
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -14,5 +15,10 @@ class Reply extends Model
     public function answer()
     {
         return $this->belongsTo('App\Answer');
+    }
+
+    public function question()
+    {
+        return $this->belongsTo('App\Question');
     }
 }

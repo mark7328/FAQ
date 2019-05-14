@@ -11,7 +11,7 @@
                             {!! Form::model($reply, ['route' => ['reply.store', $reply], 'method' => 'post']) !!}
 
                         @else()
-                            {!! Form::model($reply, ['route' => ['reply.update', $answer, $reply], 'method' => 'patch']) !!}
+                            {!! Form::model($reply, ['route' => ['reply.update', $reply], 'method' => 'patch']) !!}
                         @endif
                         <div class="form-group">
                             {!! Form::label('body', 'Body') !!}
