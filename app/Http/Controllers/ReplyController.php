@@ -25,7 +25,7 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Answer $answer)
+    public function create($answer)
     {
 
         $reply = new Reply;
@@ -39,7 +39,7 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Answer $answer)
+    public function store(Request $request, $answer)
     {
         $input = $request->validate([
             'body' => 'required|min:5',
@@ -53,7 +53,7 @@ class ReplyController extends Controller
         $reply->user()->associate(Auth::user());
         $reply->answer()->associate($answer);
         $reply->save();
-        return redirect()->route('reply.show',['reply_id' => $reply->id])->with('message', 'Saved');
+        return redirect()->route('home')->with('message', 'Reply Saved');
 
     }
 
@@ -63,10 +63,9 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Answer $answer,Reply $reply)
+    public function show(Answer $answer)
     {
-        $reply = Reply::find($reply);
-        return view('answer')->with(['answer' => $answer, 'reply' => $reply]);
+        return view('answer')->with('answer', $answer);
     }
 
     /**

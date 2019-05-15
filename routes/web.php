@@ -33,15 +33,17 @@ Route::post('/questions/{question_id}/answers/', 'AnswerController@store')->name
 Route::patch('/questions/{question_id}/answer/{answer_id}', 'AnswerController@update')->name('answers.update');
 Route::delete('/questions/{question_id}/answer/{answer_id}', 'AnswerController@destroy')->name('answers.destroy');
 
-Route::get('/questions/{question_id}/answers/{answer_id}/replies/create', 'ReplyController@create')->name('reply.create');
+Route::get('/answers/{answer_id}/replies/create', 'ReplyController@create')->name('reply.create');
 
 Route::resources([
     'questions' => 'QuestionController',
 ]);
 
 
-Route::resources([
-    'reply' => 'ReplyController',
-]);
 
+Route::get('/answers/{answer_id}/', 'ReplyController@show')->name('reply.show');
+Route::get('/questions/{question_id}/answers/{answer_id}/replies/{replies_id}/edit', 'ReplyController@edit')->name('reply.edit');
+Route::post('/answers/{answer_id}/replies/', 'ReplyController@store')->name('reply.store');
+Route::patch('/questions/{question_id}/answers/{answer_id}/replies/{replies_id}', 'ReplyController@update')->name('reply.update');
+Route::delete('/questions/{question_id}/answers/{answer_id}/replies/{replies_id}', 'ReplyController@destroy')->name('reply.destroy');
 

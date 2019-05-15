@@ -34,6 +34,7 @@
                     <div class="card-body">
                         @forelse($question->answers as $answer)
                             <div class="card">
+                                Replies: {{ $answer->reply()->count() }}
                                 <div class="card-body">{{$answer->body}}</div>
                                 <div class="card-footer">
 
