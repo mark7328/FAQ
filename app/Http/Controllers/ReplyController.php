@@ -23,11 +23,11 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Answer $answer)
     {
         $reply = new Reply;
         $edit = FALSE;
-        return view('ReplyForm', ['reply' => $reply,'edit' => $edit ]);
+        return view('ReplyForm', ['reply' => $reply,'edit' => $edit,'answer' =>$answer ]);
     }
 
     /**
