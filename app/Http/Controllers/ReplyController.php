@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Reply;
 use App\Answer;
 use Illuminate\Support\Facades\Auth;
@@ -36,8 +37,21 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Answer $answer)
     {
+        $input = $request->validate([
+            'body' => 'required|min:5',
+        ], [
+            'body.required' => 'Body is required',
+            'body.min' => 'Body must be at least 5 characters',
+        ]);
+        $input = request()->all();
+        $answer = Answer::find($answer);
+        $Reply = new Reply($input);
+        $Reply->user()->associate(Auth::user());
+        $Reply->answer()->associate($answer);
+        $Reply->save();
+        return redirect()->route('answer.show',['answer_id' => $answer->id])->with('message', 'Saved');
 
     }
 
