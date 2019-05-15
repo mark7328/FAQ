@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Question;
 use App\Reply;
 use App\Answer;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +11,10 @@ use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,11 +25,12 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($answer)
+    public function create(Answer $answer)
     {
+
         $reply = new Reply;
         $edit = FALSE;
-        return view('ReplyForm', ['reply' => $reply,'edit' => $edit, 'answer' =>$answer  ]);
+        return view('ReplyForm', ['reply' => $reply,'edit' => $edit,'answer'=>$answer]);
     }
 
     /**
@@ -32,9 +39,22 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Answer $answer)
     {
-        //
+        $input = $request->validate([
+            'body' => 'required|min:5',
+        ], [
+            'body.required' => 'Body is required',
+            'body.min' => 'Body must be at least 5 characters',
+        ]);
+        $input = request()->all();
+        $answer = Answer::find($answer);
+        $reply = new Reply($input);
+        $reply->user()->associate(Auth::user());
+        $reply->answer()->associate($answer);
+        $reply->save();
+        return redirect()->route('reply.show',['reply_id' => $reply->id])->with('message', 'Saved');
+
     }
 
     /**
@@ -43,9 +63,10 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Answer $answer,Reply $reply)
     {
-
+        $reply = Reply::find($reply);
+        return view('answer')->with(['answer' => $answer, 'reply' => $reply]);
     }
 
     /**
@@ -54,9 +75,11 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($answer, $reply)
     {
-        //
+        $reply = Reply::find($reply);
+        $edit = TRUE;
+        return view('answerForm', ['answer' => $answer, 'edit' => $edit, 'reply'=>$reply ]);
     }
 
     /**
@@ -66,9 +89,9 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  $answer, $reply)
     {
-        //
+
     }
 
     /**
@@ -77,8 +100,8 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($answer,$reply)
     {
-        //
+
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
-    protected $fillable = ['body'];
+    protected $fillable = ['body','id'];
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -19,4 +19,6 @@ class Answer extends Model
     {
         return $this->hasMany('App\Reply');
     }
+
+
 }

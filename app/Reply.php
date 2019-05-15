@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
-    protected $fillable = ['body'];
+    protected $fillable = ['body','answer_id'];
+
     public function user()
     {
         return $this->belongsTo('App\User');
     }
-    public function answers()
+    public function answer()
     {
-        return $this->hasMany('App\Answer');
+        return $this->belongsTo('App\Answer');
     }
+
 }
