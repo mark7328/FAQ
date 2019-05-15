@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Question;
 use App\Reply;
 use App\Answer;
 use Illuminate\Support\Facades\Auth;
@@ -24,12 +25,12 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Answer $answer)
     {
 
         $reply = new Reply;
         $edit = FALSE;
-        return view('ReplyForm', ['reply' => $reply,'edit' => $edit]);
+        return view('ReplyForm', ['reply' => $reply,'edit' => $edit,'answer'=>$answer]);
     }
 
     /**

@@ -14,7 +14,7 @@ class RepliesTableSeeder extends Seeder
         $users = App\User::inRandomOrder();
         for ($i = 1; $i <= 6; $i++) {
             $users->each(function ($user) {
-                $answer = App\Question::inRandomOrder()->first();
+                $answer = App\Answer::inRandomOrder()->first();
                 $reply = factory(\App\Reply::class)->make();
                 $reply->user()->associate($user);
                 $reply->answer()->associate($answer);

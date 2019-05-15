@@ -8,7 +8,7 @@
                     <div class="card-header">
                         Answer
                         <a class="btn btn-success float-right"
-                                                      href="{{ route('reply.create', ['answer_id'=> $answer->id])}}">
+                           href="{{ route('reply.create', ['answer_id'=> $answer->id])}}">
 
                             Reply
                         </a>

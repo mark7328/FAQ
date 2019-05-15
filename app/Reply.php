@@ -17,8 +17,4 @@ class Reply extends Model
         return $this->belongsTo('App\Answer');
     }
 
-    public function question()
-    {
-        return $this->belongsTo('App\Question');
-    }
 }

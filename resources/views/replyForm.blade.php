@@ -8,10 +8,10 @@
                     <div class="card-header">Reply Form</div>
                     <div class="card-body">
                         @if($edit === FALSE)
-                            {!! Form::model($reply, ['route' => ['reply.store', $reply], 'method' => 'post']) !!}
+                            {!! Form::model($reply, ['route' => ['reply.store'], 'method' => 'post']) !!}
 
                         @else()
-                            {!! Form::model($reply, ['route' => ['reply.update', $reply], 'method' => 'patch']) !!}
+                            {!! Form::model($reply, ['route' => ['reply.update'], 'method' => 'patch']) !!}
                         @endif
                         <div class="form-group">
                             {!! Form::label('body', 'Body') !!}
