@@ -87,9 +87,9 @@
                     <p><b>GitHub Accounts</b></p>
                 </div>
                 <div class="links">
-                    <a href="https://github.com/laravel/laravel">Martin</a>
-                    <a href="https://laracasts.com">Gabe</a>
-                    <a href="https://laravel-news.com">Vishal</a>
+                    <a href="https://github.com/mark7328">Martin</a>
+                    <a href="https://github.com/Gabe397">Gabe</a>
+                    <a href="https://github.com/vshah2799">Vishal</a>
                 </div>
             </div>
         </div>
