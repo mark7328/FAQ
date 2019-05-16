@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Answer;
 use App\Http\Controllers\ReplyController;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -32,6 +33,13 @@ class ReplyTest extends TestCase
             method_exists(ReplyController::class, "show")
         );
     }
+    public function testShow(): void{
+        $test = new ReplyController();
+        $answer = new Answer();
+        $this->assertTrue(
+            $test->show($answer) == view('answer')->with('answer', $answer)
+        );
+    }
 
     public function testEditExists(): void{
         $this->assertTrue(
@@ -50,5 +58,6 @@ class ReplyTest extends TestCase
             method_exists(ReplyController::class, "destroy")
         );
     }
+
 
 }
