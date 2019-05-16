@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Http\Controllers\ReplyController;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,5 +15,11 @@ class ReplyTest extends TestCase
         );
     }
 
+    public function testConstructExists(): void{
+        $this->assertTrue(
+          method_exists(ReplyController::class, "__construct")
+        );
+    }
     
+
 }
