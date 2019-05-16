@@ -20,6 +20,13 @@ class ReplyTest extends TestCase
           method_exists(ReplyController::class, "__construct")
         );
     }
+
+    public function testStoreExists(): void{
+        $this->assertTrue(
+          method_exists(ReplyController::class, "store")
+        );
+    }
     
+
 
 }
