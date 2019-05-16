@@ -30,7 +30,7 @@ class ReplyController extends Controller
 
         $reply = new Reply;
         $edit = FALSE;
-        return view('ReplyForm', ['reply' => $reply,'edit' => $edit,'answer'=>$answer]);
+        return view('replyForm', ['reply' => $reply,'edit' => $edit,'answer'=>$answer]);
     }
 
     /**
