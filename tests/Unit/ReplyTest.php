@@ -45,5 +45,10 @@ class ReplyTest extends TestCase
         );
     }
 
+    public function testDestroyExists(): void{
+        $this->assertTrue(
+            method_exists(ReplyController::class, "destroy")
+        );
+    }
 
 }
