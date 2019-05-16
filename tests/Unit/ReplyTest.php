@@ -33,6 +33,12 @@ class ReplyTest extends TestCase
         );
     }
 
+    public function testEditExists(): void{
+        $this->assertTrue(
+            method_exists(ReplyController::class, "edit")
+        );
+    }
+    
 
 
 }
