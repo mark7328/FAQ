@@ -8,13 +8,11 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ReplyTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $this->assertTrue(true);
+    public function testReplyControllerExists(): void{
+        $this -> assertTrue(
+            class_exists("ReplyController.php")
+        );
     }
+
+    
 }
